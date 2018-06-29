@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    defaultConfig {
+        applicationId "com.github.bkhezry.persiansearchablespinnerdemo"
+        minSdkVersion 17
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation project(path: ':persiansearchablespinner')
+
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    testImplementation 'junit:junit:4.12'
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+
+    <com.github.bkhezry.searchablespinner.SearchableSpinner
+        android:id="@+id/SearchableSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        app:ShowBorders="true"
+        app:BordersSize="1dp"
+        app:RevealEmptyText="Touch to select"
+        app:BoarderColor="@color/colorPrimary"
+        app:SpinnerExpandHeight="250dp"/>
+
+    <com.github.bkhezry.searchablespinner.SearchableSpinner
+        android:id="@+id/SearchableSpinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        app:StartSearchTintColor="@android:color/white"
+        app:DoneSearchTintColor="@android:color/white"
+        app:RevealViewBackgroundColor="@android:color/holo_blue_light"
+        app:SearchViewBackgroundColor="@android:color/holo_blue_light"
+        app:ShowBorders="true"
+        app:BordersSize="1dp"
+        app:BoarderColor="@android:color/holo_blue_light"
+        app:SpinnerExpandHeight="0dp"/>
+
+    <com.github.bkhezry.searchablespinner.SearchableSpinner
+        android:id="@+id/SearchableSpinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        app:StartSearchTintColor="@android:color/white"
+        app:DoneSearchTintColor="@android:color/holo_purple"
+        app:RevealViewBackgroundColor="@android:color/holo_purple"
+        app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+        app:ShowBorders="true"
+        app:RevealEmptyText="Touch to select"
+        app:SpinnerExpandHeight="300dp"
+        app:ItemsDivider="@color/gray_400"
+        app:DividerHeight="0.5dp"/>
+
+    <com.github.bkhezry.searchablespinner.SearchableSpinner
+        android:id="@+id/SearchableSpinner3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_horizontal"
+        app:StartSearchTintColor="@android:color/white"
+        app:DoneSearchTintColor="@android:color/holo_purple"
+        app:RevealViewBackgroundColor="@android:color/holo_purple"
+        app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
+        app:ShowBorders="false"
+        app:BordersSize="4dp"
+        app:RevealEmptyText="Touch to select"
+        app:SpinnerExpandHeight="300dp"
+        app:ItemsDivider="@color/gray_400"
+        app:DividerHeight="0.5dp"/>
+
+</LinearLayout>
