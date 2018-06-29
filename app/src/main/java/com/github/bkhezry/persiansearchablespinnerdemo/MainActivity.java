@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
   private SimpleListAdapter mSimpleListAdapter;
   private SimpleArrayListAdapter mSimpleArrayListAdapter;
   private final ArrayList<String> mStrings = new ArrayList<>();
+  private boolean isSpinnerOpen = false;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +47,14 @@ public class MainActivity extends AppCompatActivity {
     mSearchableSpinner.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
+        isSpinnerOpen = true;
         mSearchableSpinner1.hideEdit();
         mSearchableSpinner2.hideEdit();
       }
 
       @Override
       public void spinnerIsClosing() {
-
+        isSpinnerOpen = false;
       }
     });
 
@@ -63,12 +65,13 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void spinnerIsOpening() {
         mSearchableSpinner.hideEdit();
+        isSpinnerOpen = true;
         mSearchableSpinner2.hideEdit();
       }
 
       @Override
       public void spinnerIsClosing() {
-
+        isSpinnerOpen = false;
       }
     });
 
@@ -78,13 +81,14 @@ public class MainActivity extends AppCompatActivity {
     mSearchableSpinner2.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
+        isSpinnerOpen = true;
         mSearchableSpinner.hideEdit();
         mSearchableSpinner1.hideEdit();
       }
 
       @Override
       public void spinnerIsClosing() {
-
+        isSpinnerOpen = false;
       }
     });
 
@@ -94,13 +98,14 @@ public class MainActivity extends AppCompatActivity {
     mSearchableSpinner3.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
+        isSpinnerOpen = true;
         mSearchableSpinner.hideEdit();
         mSearchableSpinner3.hideEdit();
       }
 
       @Override
       public void spinnerIsClosing() {
-
+        isSpinnerOpen = false;
       }
     });
   }
@@ -115,6 +120,9 @@ public class MainActivity extends AppCompatActivity {
     }
     if (!mSearchableSpinner2.isInsideSearchEditText(event)) {
       mSearchableSpinner2.hideEdit();
+    }
+    if (!mSearchableSpinner3.isInsideSearchEditText(event)) {
+      mSearchableSpinner3.hideEdit();
     }
     return super.onTouchEvent(event);
   }
@@ -178,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
       mSearchableSpinner.setSelectedItem(0);
       mSearchableSpinner1.setSelectedItem(0);
       mSearchableSpinner2.setSelectedItem(0);
+      mSearchableSpinner3.setSelectedItem(0);
       return true;
     }
 
@@ -187,5 +196,17 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void attachBaseContext(Context newBase) {
     super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (isSpinnerOpen) {
+      mSearchableSpinner.hideEdit();
+      mSearchableSpinner1.hideEdit();
+      mSearchableSpinner2.hideEdit();
+      mSearchableSpinner3.hideEdit();
+    } else {
+      super.onBackPressed();
+    }
   }
 }

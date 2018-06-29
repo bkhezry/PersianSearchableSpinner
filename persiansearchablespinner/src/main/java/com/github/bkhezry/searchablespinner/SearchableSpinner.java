@@ -53,8 +53,6 @@ import com.joanzapata.iconify.Iconify;
 import com.joanzapata.iconify.fonts.MaterialModule;
 import com.joanzapata.iconify.widget.IconTextView;
 
-import java.lang.reflect.Type;
-
 import gr.escsoft.michaelprimez.searchablespinner.R;
 import io.codetail.animation.ViewAnimationUtils;
 import io.codetail.widget.RevealLinearLayout;
@@ -110,6 +108,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
   private String mFontName;
   private Typeface mTypeface;
   private TextView revealEmptyText;
+  private boolean isSpinnerOpen = false;
 
   public enum ViewState {
     ShowingRevealedLayout,
@@ -504,6 +503,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     mViewState = ViewState.ShowingAnimation;
     if (mStatusListener != null) {
       mStatusListener.spinnerIsOpening();
+      isSpinnerOpen = true;
     }
     final int cx = mRevealContainerCardView.getLeft();
     final int cxr = mRevealContainerCardView.getRight();
@@ -609,6 +609,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     mViewState = ViewState.ShowingAnimation;
     if (mStatusListener != null) {
       mStatusListener.spinnerIsClosing();
+      isSpinnerOpen = false;
     }
     final int cx = mContainerCardView.getLeft();
     final int cxr = mContainerCardView.getRight();
@@ -727,6 +728,10 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
 
   private void createTypeface() {
     mTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/" + mFontName);
+  }
+
+  public boolean isSpinnerOpen() {
+    return isSpinnerOpen;
   }
 
   @Override
