@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
 
     initListValues();
-    mSimpleListAdapter = new SimpleListAdapter(this, mStrings);
-    mSimpleArrayListAdapter = new SimpleArrayListAdapter(this, mStrings);
+    mSimpleListAdapter = new SimpleListAdapter(this, mStrings, "DroidNaskh-Regular.ttf");
+    mSimpleArrayListAdapter = new SimpleArrayListAdapter(this, mStrings, "DroidNaskh-Regular.ttf");
 
     mSearchableSpinner = findViewById(R.id.SearchableSpinner);
+    mSearchableSpinner.setFontName("DroidNaskh-Regular.ttf");
     mSearchableSpinner.setAdapter(mSimpleArrayListAdapter);
     mSearchableSpinner.setOnItemSelectedListener(mOnItemSelectedListener);
     mSearchableSpinner.setStatusListener(new IStatusListener() {
