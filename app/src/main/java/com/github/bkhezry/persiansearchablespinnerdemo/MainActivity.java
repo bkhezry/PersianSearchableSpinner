@@ -16,14 +16,22 @@ import com.github.bkhezry.searchablespinner.interfaces.OnItemSelectedListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
-  private SearchableSpinner mSearchableSpinner;
-  private SearchableSpinner mSearchableSpinner1;
-  private SearchableSpinner mSearchableSpinner2;
-  private SearchableSpinner mSearchableSpinner3;
+  @BindView(R.id.toolbar)
+  Toolbar toolbar;
+  @BindView(R.id.searchable_spinner)
+  SearchableSpinner searchableSpinner;
+  @BindView(R.id.searchable_spinner1)
+  SearchableSpinner searchableSpinner1;
+  @BindView(R.id.searchable_spinner2)
+  SearchableSpinner searchableSpinner2;
+  @BindView(R.id.searchable_spinner3)
+  SearchableSpinner searchableSpinner3;
   private SimpleListAdapter mSimpleListAdapter;
   private SimpleArrayListAdapter mSimpleArrayListAdapter;
   private final ArrayList<String> mStrings = new ArrayList<>();
@@ -33,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    ButterKnife.bind(this);
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
@@ -40,16 +49,26 @@ public class MainActivity extends AppCompatActivity {
     mSimpleListAdapter = new SimpleListAdapter(this, mStrings, "DroidNaskh-Regular.ttf");
     mSimpleArrayListAdapter = new SimpleArrayListAdapter(this, mStrings, "DroidNaskh-Regular.ttf");
 
-    mSearchableSpinner = findViewById(R.id.searchable_spinner);
-    mSearchableSpinner.setFontName("DroidNaskh-Regular.ttf");
-    mSearchableSpinner.setAdapter(mSimpleArrayListAdapter);
-    mSearchableSpinner.setOnItemSelectedListener(mOnItemSelectedListener);
-    mSearchableSpinner.setStatusListener(new IStatusListener() {
+    searchableSpinner.setFontName("DroidNaskh-Regular.ttf");
+    searchableSpinner.setAdapter(mSimpleArrayListAdapter);
+    searchableSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(View view, int position, long id) {
+        Toast.makeText(MainActivity.this, "Item on position " + position + " : " + mSimpleArrayListAdapter.getItem(position) + " Selected", Toast.LENGTH_SHORT).show();
+      }
+
+      @Override
+      public void onNothingSelected() {
+
+      }
+    });
+    searchableSpinner.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
         isSpinnerOpen = true;
-        mSearchableSpinner1.hideEdit();
-        mSearchableSpinner2.hideEdit();
+        searchableSpinner1.hideEdit();
+        searchableSpinner2.hideEdit();
+        searchableSpinner3.hideEdit();
       }
 
       @Override
@@ -58,15 +77,25 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    mSearchableSpinner1 = findViewById(R.id.searchable_spinner1);
-    mSearchableSpinner1.setAdapter(mSimpleListAdapter);
-    mSearchableSpinner1.setOnItemSelectedListener(mOnItemSelectedListener);
-    mSearchableSpinner1.setStatusListener(new IStatusListener() {
+    searchableSpinner1.setAdapter(mSimpleListAdapter);
+    searchableSpinner1.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(View view, int position, long id) {
+        Toast.makeText(MainActivity.this, "Item on position " + position + " : " + mSimpleListAdapter.getItem(position) + " Selected", Toast.LENGTH_SHORT).show();
+      }
+
+      @Override
+      public void onNothingSelected() {
+
+      }
+    });
+    searchableSpinner1.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
-        mSearchableSpinner.hideEdit();
         isSpinnerOpen = true;
-        mSearchableSpinner2.hideEdit();
+        searchableSpinner.hideEdit();
+        searchableSpinner2.hideEdit();
+        searchableSpinner3.hideEdit();
       }
 
       @Override
@@ -75,15 +104,25 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    mSearchableSpinner2 = findViewById(R.id.searchable_spinner2);
-    mSearchableSpinner2.setAdapter(mSimpleListAdapter);
-    mSearchableSpinner2.setOnItemSelectedListener(mOnItemSelectedListener);
-    mSearchableSpinner2.setStatusListener(new IStatusListener() {
+    searchableSpinner2.setAdapter(mSimpleListAdapter);
+    searchableSpinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(View view, int position, long id) {
+        Toast.makeText(MainActivity.this, "Item on position " + position + " : " + mSimpleListAdapter.getItem(position) + " Selected", Toast.LENGTH_SHORT).show();
+      }
+
+      @Override
+      public void onNothingSelected() {
+
+      }
+    });
+    searchableSpinner2.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
         isSpinnerOpen = true;
-        mSearchableSpinner.hideEdit();
-        mSearchableSpinner1.hideEdit();
+        searchableSpinner.hideEdit();
+        searchableSpinner1.hideEdit();
+        searchableSpinner3.hideEdit();
       }
 
       @Override
@@ -92,15 +131,25 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    mSearchableSpinner3 = findViewById(R.id.searchable_spinner3);
-    mSearchableSpinner3.setAdapter(mSimpleListAdapter);
-    mSearchableSpinner3.setOnItemSelectedListener(mOnItemSelectedListener);
-    mSearchableSpinner3.setStatusListener(new IStatusListener() {
+    searchableSpinner3.setAdapter(mSimpleListAdapter);
+    searchableSpinner3.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(View view, int position, long id) {
+        Toast.makeText(MainActivity.this, "Item on position " + position + " : " + mSimpleListAdapter.getItem(position) + " Selected", Toast.LENGTH_SHORT).show();
+      }
+
+      @Override
+      public void onNothingSelected() {
+
+      }
+    });
+    searchableSpinner3.setStatusListener(new IStatusListener() {
       @Override
       public void spinnerIsOpening() {
         isSpinnerOpen = true;
-        mSearchableSpinner.hideEdit();
-        mSearchableSpinner3.hideEdit();
+        searchableSpinner.hideEdit();
+        searchableSpinner1.hideEdit();
+        searchableSpinner2.hideEdit();
       }
 
       @Override
@@ -112,32 +161,20 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public boolean onTouchEvent(MotionEvent event) {
-    if (!mSearchableSpinner.isInsideSearchEditText(event)) {
-      mSearchableSpinner.hideEdit();
+    if (!searchableSpinner.isInsideSearchEditText(event)) {
+      searchableSpinner.hideEdit();
     }
-    if (!mSearchableSpinner1.isInsideSearchEditText(event)) {
-      mSearchableSpinner1.hideEdit();
+    if (!searchableSpinner1.isInsideSearchEditText(event)) {
+      searchableSpinner1.hideEdit();
     }
-    if (!mSearchableSpinner2.isInsideSearchEditText(event)) {
-      mSearchableSpinner2.hideEdit();
+    if (!searchableSpinner2.isInsideSearchEditText(event)) {
+      searchableSpinner2.hideEdit();
     }
-    if (!mSearchableSpinner3.isInsideSearchEditText(event)) {
-      mSearchableSpinner3.hideEdit();
+    if (!searchableSpinner3.isInsideSearchEditText(event)) {
+      searchableSpinner3.hideEdit();
     }
     return super.onTouchEvent(event);
   }
-
-  private OnItemSelectedListener mOnItemSelectedListener = new OnItemSelectedListener() {
-    @Override
-    public void onItemSelected(View view, int position, long id) {
-      Toast.makeText(MainActivity.this, "Item on position " + position + " : " + mSimpleListAdapter.getItem(position) + " Selected", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected() {
-      Toast.makeText(MainActivity.this, "Nothing Selected", Toast.LENGTH_SHORT).show();
-    }
-  };
 
   private void initListValues() {
     mStrings.add("پاتریک درآواکیانس");
@@ -180,13 +217,8 @@ public class MainActivity extends AppCompatActivity {
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
+    if (id == R.id.action_about) {
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_reset) {
-      mSearchableSpinner.setSelectedItem(0);
-      mSearchableSpinner1.setSelectedItem(0);
-      mSearchableSpinner2.setSelectedItem(0);
-      mSearchableSpinner3.setSelectedItem(0);
       return true;
     }
 
@@ -201,10 +233,10 @@ public class MainActivity extends AppCompatActivity {
   @Override
   public void onBackPressed() {
     if (isSpinnerOpen) {
-      mSearchableSpinner.hideEdit();
-      mSearchableSpinner1.hideEdit();
-      mSearchableSpinner2.hideEdit();
-      mSearchableSpinner3.hideEdit();
+      searchableSpinner.hideEdit();
+      searchableSpinner1.hideEdit();
+      searchableSpinner2.hideEdit();
+      searchableSpinner3.hideEdit();
     } else {
       super.onBackPressed();
     }
