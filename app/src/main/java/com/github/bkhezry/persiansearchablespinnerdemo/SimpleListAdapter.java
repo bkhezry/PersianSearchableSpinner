@@ -38,13 +38,13 @@ public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinn
 
   @Override
   public int getCount() {
-    return mStrings == null ? 0 : mStrings.size() + 1;
+    return mStrings == null ? 0 : mStrings.size();
   }
 
   @Override
   public Object getItem(int position) {
-    if (mStrings != null && position > 0) {
-      return mStrings.get(position - 1);
+    if (mStrings != null) {
+      return mStrings.get(position);
     } else {
       return null;
     }
@@ -52,7 +52,7 @@ public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinn
 
   @Override
   public long getItemId(int position) {
-    if (mStrings == null && position > 0) {
+    if (mStrings == null) {
       return mStrings.get(position).hashCode();
     } else {
       return -1;
@@ -61,37 +61,22 @@ public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinn
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    View view = null;
-    if (position == 0) {
-      view = getNoSelectionView();
-    } else {
-      view = View.inflate(mContext, R.layout.view_list_item, null);
-      ImageView letters = view.findViewById(R.id.letter_image_view);
-      TextView displayName = view.findViewById(R.id.display_name_text_view);
-      letters.setImageDrawable(getTextDrawable(mStrings.get(position - 1)));
-      displayName.setText(mStrings.get(position - 1));
-    }
+    View view = View.inflate(mContext, R.layout.view_list_item, null);
+    ImageView letters = view.findViewById(R.id.letter_image_view);
+    TextView displayName = view.findViewById(R.id.display_name_text_view);
+    letters.setImageDrawable(getTextDrawable(mStrings.get(position)));
+    displayName.setText(mStrings.get(position));
     return view;
   }
 
   @Override
   public View getSelectedView(int position) {
-    View view = null;
-    if (position == 0) {
-      view = getNoSelectionView();
-    } else {
-      view = View.inflate(mContext, R.layout.view_list_item, null);
-      ImageView letters = view.findViewById(R.id.letter_image_view);
-      TextView displayName = view.findViewById(R.id.display_name_text_view);
-      letters.setImageDrawable(getTextDrawable(mStrings.get(position - 1)));
-      displayName.setText(mStrings.get(position - 1));
-    }
+    View view = View.inflate(mContext, R.layout.view_list_item, null);
+    ImageView letters = view.findViewById(R.id.letter_image_view);
+    TextView displayName = view.findViewById(R.id.display_name_text_view);
+    letters.setImageDrawable(getTextDrawable(mStrings.get(position)));
+    displayName.setText(mStrings.get(position));
     return view;
-  }
-
-  @Override
-  public View getNoSelectionView() {
-    return View.inflate(mContext, R.layout.view_list_no_selection_item, null);
   }
 
   private TextDrawable getTextDrawable(String displayName) {
