@@ -60,7 +60,7 @@ import io.codetail.widget.RevealLinearLayout;
 public class SearchableSpinner extends RelativeLayout implements View.OnClickListener {
 
   private static final int DefaultElevation = 16;
-  private static final int DefaultAnimationDuration = 400;
+  private static final int DefaultAnimationDuration = 300;
   private ViewState mViewState = ViewState.ShowingRevealedLayout;
   private IStatusListener mStatusListener;
   private CardView mRevealContainerCardView;
@@ -388,7 +388,12 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     @Override
     public void onClick(View v) {
       if (mViewState == ViewState.ShowingRevealedLayout) {
-        revealEditView();
+        getRootView().post(new Runnable() {
+          @Override
+          public void run() {
+            revealEditView();
+          }
+        });
       } else if (mViewState == ViewState.ShowingEditLayout) {
         hideEditView();
       }
@@ -514,27 +519,33 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     if (!mPopupWindow.isShowing()) {
       mPopupWindow.showAsDropDown(this, cx, 0);
     }
-
-    final Animator revealAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.LnrLt_SearchList), cxr, cy, reverseEndRadius, reverseStartRadius);
-    revealAnimator.addListener(new Animator.AnimatorListener() {
+    mPopupWindow.getContentView().post(new Runnable() {
       @Override
-      public void onAnimationStart(Animator animation) {
-      }
+      public void run() {
+        Animator revealAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.LnrLt_SearchList), cxr, cy, reverseEndRadius, reverseStartRadius);
+        revealAnimator.addListener(new Animator.AnimatorListener() {
+          @Override
+          public void onAnimationStart(Animator animation) {
+          }
 
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        mViewState = ViewState.ShowingEditLayout;
-        mRevealContainerCardView.setVisibility(View.INVISIBLE);
-      }
+          @Override
+          public void onAnimationEnd(Animator animation) {
+            mViewState = ViewState.ShowingEditLayout;
+            mRevealContainerCardView.setVisibility(View.INVISIBLE);
+          }
 
-      @Override
-      public void onAnimationCancel(Animator animation) {
+          @Override
+          public void onAnimationCancel(Animator animation) {
 
-      }
+          }
 
-      @Override
-      public void onAnimationRepeat(Animator animation) {
+          @Override
+          public void onAnimationRepeat(Animator animation) {
 
+          }
+        });
+        revealAnimator.setDuration(mAnimDuration);
+        revealAnimator.start();
       }
     });
 
@@ -566,11 +577,8 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     mContainerCardView.setVisibility(View.VISIBLE);
 
     animator.setDuration(mAnimDuration);
-    revealAnimator.setDuration(mAnimDuration);
-
 
     animator.start();
-    revealAnimator.start();
 
     mPopupWindow.getContentView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
       @Override
