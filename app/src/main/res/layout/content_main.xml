@@ -12,7 +12,7 @@
 
 
     <com.github.bkhezry.searchablespinner.SearchableSpinner
-        android:id="@+id/SearchableSpinner"
+        android:id="@+id/searchable_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -21,14 +21,14 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        app:BoarderColor="@color/colorPrimary"
-        app:BordersSize="1dp"
-        app:RevealEmptyText="انتخاب کنید"
-        app:ShowBorders="true"
-        app:SpinnerExpandHeight="250dp" />
+        app:boarder_color="@color/colorPrimary"
+        app:borders_size="1dp"
+        app:reveal_empty_text="انتخاب کنید"
+        app:show_borders="true"
+        app:spinner_expand_height="250dp" />
 
     <com.github.bkhezry.searchablespinner.SearchableSpinner
-        android:id="@+id/SearchableSpinner1"
+        android:id="@+id/searchable_spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -37,18 +37,18 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        app:BoarderColor="@android:color/holo_blue_light"
-        app:BordersSize="1dp"
-        app:DoneSearchTintColor="@android:color/white"
-        app:FontName="DroidNaskh-Regular.ttf"
-        app:RevealViewBackgroundColor="@android:color/holo_blue_light"
-        app:SearchViewBackgroundColor="@android:color/holo_blue_light"
-        app:ShowBorders="true"
-        app:SpinnerExpandHeight="0dp"
-        app:StartSearchTintColor="@android:color/white" />
+        app:boarder_color="@android:color/holo_blue_light"
+        app:borders_size="1dp"
+        app:done_search_tint_color="@android:color/white"
+        app:font_name="DroidNaskh-Regular.ttf"
+        app:reveal_view_background_color="@android:color/holo_blue_light"
+        app:search_view_background_color="@android:color/holo_blue_light"
+        app:show_borders="true"
+        app:spinner_expand_height="0dp"
+        app:start_search_tint_color="@android:color/white" />
 
     <com.github.bkhezry.searchablespinner.SearchableSpinner
-        android:id="@+id/SearchableSpinner2"
+        android:id="@+id/searchable_spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -57,19 +57,19 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        app:DividerHeight="0.5dp"
-        app:DoneSearchTintColor="@android:color/holo_purple"
-        app:FontName="DroidNaskh-Regular.ttf"
-        app:ItemsDivider="@color/gray_400"
-        app:RevealEmptyText="انتخاب کنید"
-        app:RevealViewBackgroundColor="@android:color/holo_purple"
-        app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-        app:ShowBorders="true"
-        app:SpinnerExpandHeight="300dp"
-        app:StartSearchTintColor="@android:color/white" />
+        app:divider_height="0.5dp"
+        app:font_name="DroidNaskh-Regular.ttf"
+        app:items_divider="@color/gray_400"
+        app:no_items_found_text="@android:color/holo_purple"
+        app:reveal_empty_text="انتخاب کنید"
+        app:reveal_view_background_color="@android:color/holo_purple"
+        app:search_view_background_color="@android:color/secondary_text_dark"
+        app:show_borders="true"
+        app:spinner_expand_height="300dp"
+        app:start_search_tint_color="@android:color/white" />
 
     <com.github.bkhezry.searchablespinner.SearchableSpinner
-        android:id="@+id/SearchableSpinner3"
+        android:id="@+id/searchable_spinner3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -78,16 +78,16 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        app:BordersSize="4dp"
-        app:DividerHeight="0.5dp"
-        app:DoneSearchTintColor="@android:color/holo_purple"
-        app:FontName="DroidNaskh-Regular.ttf"
-        app:ItemsDivider="@color/gray_400"
-        app:RevealEmptyText="انتخاب کنید"
-        app:RevealViewBackgroundColor="@android:color/holo_purple"
-        app:SearchViewBackgroundColor="@android:color/secondary_text_dark"
-        app:ShowBorders="false"
-        app:SpinnerExpandHeight="300dp"
-        app:StartSearchTintColor="@android:color/white" />
+        app:borders_size="4dp"
+        app:divider_height="0.5dp"
+        app:done_search_tint_color="@android:color/holo_purple"
+        app:font_name="DroidNaskh-Regular.ttf"
+        app:items_divider="@color/gray_400"
+        app:reveal_empty_text="انتخاب کنید"
+        app:reveal_view_background_color="@android:color/holo_purple"
+        app:search_view_background_color="@android:color/secondary_text_dark"
+        app:show_borders="false"
+        app:spinner_expand_height="300dp"
+        app:start_search_tint_color="@android:color/white" />
 
 </LinearLayout>

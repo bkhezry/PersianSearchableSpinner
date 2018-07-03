@@ -69,8 +69,8 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
       view = getNoSelectionView();
     } else {
       view = View.inflate(mContext, R.layout.view_list_item, null);
-      ImageView letters = view.findViewById(R.id.ImgVw_Letters);
-      TextView displayName = view.findViewById(R.id.TxtVw_DisplayName);
+      ImageView letters = view.findViewById(R.id.letter_image_view);
+      TextView displayName = view.findViewById(R.id.display_name_text_view);
       letters.setImageDrawable(getTextDrawable(mStrings.get(position - 1)));
       displayName.setText(mStrings.get(position - 1));
     }
@@ -84,8 +84,8 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
       view = getNoSelectionView();
     } else {
       view = View.inflate(mContext, R.layout.view_list_item, null);
-      ImageView letters = view.findViewById(R.id.ImgVw_Letters);
-      TextView displayName = view.findViewById(R.id.TxtVw_DisplayName);
+      ImageView letters = view.findViewById(R.id.letter_image_view);
+      TextView displayName = view.findViewById(R.id.display_name_text_view);
       letters.setImageDrawable(getTextDrawable(mStrings.get(position - 1)));
       displayName.setText(mStrings.get(position - 1));
     }

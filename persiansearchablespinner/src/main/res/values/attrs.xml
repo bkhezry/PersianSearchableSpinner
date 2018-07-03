@@ -2,22 +2,22 @@
 <resources>
     <declare-styleable name="SearchableSpinner">
         <!-- View attributes -->
-        <attr name="RevealViewBackgroundColor" format="color" />
-        <attr name="StartSearchTintColor" format="color" />
-        <attr name="SearchViewBackgroundColor" format="color" />
-        <attr name="SearchViewTextColor" format="color" />
-        <attr name="DoneSearchTintColor" format="color" />
-        <attr name="AnimDuration" format="integer" />
-        <attr name="ShowBorders" format="boolean" />
-        <attr name="BordersSize" format="dimension" />
-        <attr name="BoarderColor" format="color" />
-        <attr name="SpinnerExpandHeight" format="dimension" />
-        <attr name="KeepLastSearch" format="boolean" />
-        <attr name="RevealEmptyText" format="string" />
-        <attr name="SearchHintText" format="string" />
-        <attr name="NoItemsFoundText" format="string" />
-        <attr name="ItemsDivider" format="reference" />
-        <attr name="DividerHeight" format="dimension" />
-        <attr name="FontName" format="string" />
+        <attr name="reveal_view_background_color" format="color" />
+        <attr name="start_search_tint_color" format="color" />
+        <attr name="search_view_background_color" format="color" />
+        <attr name="search_view_text_color" format="color" />
+        <attr name="done_search_tint_color" format="color" />
+        <attr name="anim_duration" format="integer" />
+        <attr name="show_borders" format="boolean" />
+        <attr name="borders_size" format="dimension" />
+        <attr name="boarder_color" format="color" />
+        <attr name="spinner_expand_height" format="dimension" />
+        <attr name="keep_last_search" format="boolean" />
+        <attr name="reveal_empty_text" format="string" />
+        <attr name="search_hint_text" format="string" />
+        <attr name="no_items_found_text" format="string" />
+        <attr name="items_divider" format="reference" />
+        <attr name="divider_height" format="dimension" />
+        <attr name="font_name" format="string" />
     </declare-styleable>
 </resources>

@@ -4,4 +4,6 @@
     <string name="start_search">جستجو</string>
     <string name="search">جستجو</string>
     <string name="empty_list">موردی یافت نشد</string>
+    <string name="md_expand_more">{md-expand-more}</string>
+    <string name="md_expand_less">{md-expand-less}</string>
 </resources>

@@ -12,7 +12,7 @@
     app:layout_collapseParallaxMultiplier="0.5">
 
     <TextView
-        android:id="@+id/TxtVw_DisplayName"
+        android:id="@+id/display_name_text_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -23,7 +23,7 @@
         android:layout_height="0dp" />
 
     <ImageView
-        android:id="@+id/ImgVw_Letters"
+        android:id="@+id/letter_image_view"
         android:layout_width="32dp"
         android:layout_height="32dp" />
 

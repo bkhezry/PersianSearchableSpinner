@@ -109,6 +109,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
   private Typeface mTypeface;
   private TextView revealEmptyText;
   private boolean isSpinnerOpen = false;
+  private static final int PADDING_DP = 15;
 
   public enum ViewState {
     ShowingRevealedLayout,
@@ -141,12 +142,12 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     factory.inflate(R.layout.view_searchable_spinner, this, true);
 
     mSpinnerListContainer = (RevealLinearLayout) factory.inflate(R.layout.view_list, this, false);
-    mSpinnerListView = mSpinnerListContainer.findViewById(R.id.LstVw_SpinnerListView);
+    mSpinnerListView = mSpinnerListContainer.findViewById(R.id.spinner_list_view);
     if (mListItemDivider != null) {
       mSpinnerListView.setDivider(mListItemDivider);
       mSpinnerListView.setDividerHeight(mListDividerSize);
     }
-    mEmptyTextView = mSpinnerListContainer.findViewById(R.id.TxtVw_EmptyText);
+    mEmptyTextView = mSpinnerListContainer.findViewById(R.id.empty_text_view);
     mSpinnerListView.setEmptyView(mEmptyTextView);
     if (mFontName != null) {
       createTypeface();
@@ -157,23 +158,23 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     if (attrs != null) {
       try {
         TypedArray attributes = mContext.getTheme().obtainStyledAttributes(attrs, R.styleable.SearchableSpinner, defStyleAttr, defStyleRes);
-        mRevealViewBackgroundColor = attributes.getColor(R.styleable.SearchableSpinner_RevealViewBackgroundColor, Color.WHITE);
-        mStartEditTintColor = attributes.getColor(R.styleable.SearchableSpinner_StartSearchTintColor, Color.GRAY);
-        mEditViewBackgroundColor = attributes.getColor(R.styleable.SearchableSpinner_SearchViewBackgroundColor, Color.WHITE);
-        mEditViewTextColor = attributes.getColor(R.styleable.SearchableSpinner_SearchViewTextColor, Color.BLACK);
-        mDoneEditTintColor = attributes.getColor(R.styleable.SearchableSpinner_DoneSearchTintColor, Color.GRAY);
-        mBordersSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_BordersSize, 4);
-        mExpandSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_SpinnerExpandHeight, 0);
-        mShowBorders = attributes.getBoolean(R.styleable.SearchableSpinner_ShowBorders, false);
-        mBoarderColor = attributes.getColor(R.styleable.SearchableSpinner_BoarderColor, Color.GRAY);
-        mAnimDuration = attributes.getColor(R.styleable.SearchableSpinner_AnimDuration, DefaultAnimationDuration);
-        mKeepLastSearch = attributes.getBoolean(R.styleable.SearchableSpinner_KeepLastSearch, false);
-        mRevealEmptyText = attributes.getString(R.styleable.SearchableSpinner_RevealEmptyText);
-        mSearchHintText = attributes.getString(R.styleable.SearchableSpinner_SearchHintText);
-        mNoItemsFoundText = attributes.getString(R.styleable.SearchableSpinner_NoItemsFoundText);
-        mListItemDivider = attributes.getDrawable(R.styleable.SearchableSpinner_ItemsDivider);
-        mListDividerSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_DividerHeight, 0);
-        mFontName = attributes.getString(R.styleable.SearchableSpinner_FontName);
+        mRevealViewBackgroundColor = attributes.getColor(R.styleable.SearchableSpinner_reveal_view_background_color, Color.WHITE);
+        mStartEditTintColor = attributes.getColor(R.styleable.SearchableSpinner_start_search_tint_color, Color.GRAY);
+        mEditViewBackgroundColor = attributes.getColor(R.styleable.SearchableSpinner_search_view_background_color, Color.WHITE);
+        mEditViewTextColor = attributes.getColor(R.styleable.SearchableSpinner_search_view_text_color, Color.BLACK);
+        mDoneEditTintColor = attributes.getColor(R.styleable.SearchableSpinner_done_search_tint_color, Color.GRAY);
+        mBordersSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_borders_size, 4);
+        mExpandSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_spinner_expand_height, 0);
+        mShowBorders = attributes.getBoolean(R.styleable.SearchableSpinner_show_borders, false);
+        mBoarderColor = attributes.getColor(R.styleable.SearchableSpinner_boarder_color, Color.GRAY);
+        mAnimDuration = attributes.getColor(R.styleable.SearchableSpinner_anim_duration, DefaultAnimationDuration);
+        mKeepLastSearch = attributes.getBoolean(R.styleable.SearchableSpinner_keep_last_search, false);
+        mRevealEmptyText = attributes.getString(R.styleable.SearchableSpinner_reveal_empty_text);
+        mSearchHintText = attributes.getString(R.styleable.SearchableSpinner_search_hint_text);
+        mNoItemsFoundText = attributes.getString(R.styleable.SearchableSpinner_no_items_found_text);
+        mListItemDivider = attributes.getDrawable(R.styleable.SearchableSpinner_items_divider);
+        mListDividerSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_divider_height, 0);
+        mFontName = attributes.getString(R.styleable.SearchableSpinner_font_name);
       } catch (UnsupportedOperationException e) {
         Log.e("SearchableSpinner", "getAttributeSet --> " + e.getLocalizedMessage());
       }
@@ -183,14 +184,14 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
-    mRevealContainerCardView = findViewById(R.id.CrdVw_RevealContainer);
+    mRevealContainerCardView = findViewById(R.id.reveal_container_card_view);
     mRevealContainerCardView.setOnClickListener(mOnRevelViewClickListener);
-    mRevealItem = findViewById(R.id.FrmLt_SelectedItem);
-    mStartSearchImageView = findViewById(R.id.ImgVw_StartSearch);
+    mRevealItem = findViewById(R.id.selected_item_layout);
+    mStartSearchImageView = findViewById(R.id.start_search_icon_text_view);
 
-    mContainerCardView = findViewById(R.id.CrdVw_Container);
-    mSearchEditText = findViewById(R.id.EdtTxt_SearchEditText);
-    mDoneSearchImageView = findViewById(R.id.ImgVw_DoneSearch);
+    mContainerCardView = findViewById(R.id.container_card_view);
+    mSearchEditText = findViewById(R.id.search_edit_text);
+    mDoneSearchImageView = findViewById(R.id.done_search_icon_text_view);
     init();
   }
 
@@ -259,6 +260,9 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
       if (mCurrSelectedView == null && !TextUtils.isEmpty(mRevealEmptyText)) {
         revealEmptyText = new TextView(mContext);
         revealEmptyText.setText(mRevealEmptyText);
+        float density = mContext.getResources().getDisplayMetrics().density;
+        int paddingPixel = (int) (PADDING_DP * density);
+        revealEmptyText.setPadding(0, 0, paddingPixel, 0);
         if (mTypeface != null) {
           revealEmptyText.setTypeface(mTypeface);
         }
@@ -482,9 +486,9 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
   @Override
   public void onClick(View v) {
     int id = v.getId();
-    if (id == R.id.ImgVw_StartSearch) {
+    if (id == R.id.start_search_icon_text_view) {
       revealEdit();
-    } else if (id == R.id.ImgVw_DoneSearch) {
+    } else if (id == R.id.done_search_icon_text_view) {
       hideEdit();
     }
   }
@@ -522,7 +526,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     mPopupWindow.getContentView().post(new Runnable() {
       @Override
       public void run() {
-        Animator revealAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.LnrLt_SearchList), cxr, cy, reverseEndRadius, reverseStartRadius);
+        Animator revealAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.search_list_layout), cxr, cy, reverseEndRadius, reverseStartRadius);
         revealAnimator.addListener(new Animator.AnimatorListener() {
           @Override
           public void onAnimationStart(Animator animation) {
@@ -584,7 +588,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
       @Override
       public void onGlobalLayout() {
         mPopupWindow.getContentView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        final Animator spinnerListContainerAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.LnrLt_SearchList), cxr, cy, reverseEndRadius, reverseStartRadius);
+        final Animator spinnerListContainerAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.search_list_layout), cxr, cy, reverseEndRadius, reverseStartRadius);
         spinnerListContainerAnimator.addListener(new Animator.AnimatorListener() {
           @Override
           public void onAnimationStart(Animator animation) {
@@ -681,7 +685,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     revealAnimator.start();
 
     if (mPopupWindow.isShowing()) {
-      final Animator spinnerListContainerAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.LnrLt_SearchList), cxr, cy, reverseStartRadius, reverseEndRadius);
+      final Animator spinnerListContainerAnimator = ViewAnimationUtils.createCircularReveal(mPopupWindow.getContentView().findViewById(R.id.search_list_layout), cxr, cy, reverseStartRadius, reverseEndRadius);
       spinnerListContainerAnimator.addListener(new Animator.AnimatorListener() {
         @Override
         public void onAnimationStart(Animator animation) {

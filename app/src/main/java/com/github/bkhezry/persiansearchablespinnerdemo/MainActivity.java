@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     mSimpleListAdapter = new SimpleListAdapter(this, mStrings, "DroidNaskh-Regular.ttf");
     mSimpleArrayListAdapter = new SimpleArrayListAdapter(this, mStrings, "DroidNaskh-Regular.ttf");
 
-    mSearchableSpinner = findViewById(R.id.SearchableSpinner);
+    mSearchableSpinner = findViewById(R.id.searchable_spinner);
     mSearchableSpinner.setFontName("DroidNaskh-Regular.ttf");
     mSearchableSpinner.setAdapter(mSimpleArrayListAdapter);
     mSearchableSpinner.setOnItemSelectedListener(mOnItemSelectedListener);
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    mSearchableSpinner1 = findViewById(R.id.SearchableSpinner1);
+    mSearchableSpinner1 = findViewById(R.id.searchable_spinner1);
     mSearchableSpinner1.setAdapter(mSimpleListAdapter);
     mSearchableSpinner1.setOnItemSelectedListener(mOnItemSelectedListener);
     mSearchableSpinner1.setStatusListener(new IStatusListener() {
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    mSearchableSpinner2 = findViewById(R.id.SearchableSpinner2);
+    mSearchableSpinner2 = findViewById(R.id.searchable_spinner2);
     mSearchableSpinner2.setAdapter(mSimpleListAdapter);
     mSearchableSpinner2.setOnItemSelectedListener(mOnItemSelectedListener);
     mSearchableSpinner2.setStatusListener(new IStatusListener() {
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
-    mSearchableSpinner3 = findViewById(R.id.SearchableSpinner3);
+    mSearchableSpinner3 = findViewById(R.id.searchable_spinner3);
     mSearchableSpinner3.setAdapter(mSimpleListAdapter);
     mSearchableSpinner3.setOnItemSelectedListener(mOnItemSelectedListener);
     mSearchableSpinner3.setStatusListener(new IStatusListener() {
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     mStrings.add("نوید کاشانی");
     mStrings.add("ایلیا وکیلی");
     mStrings.add("حورا وکیلی");
-    mStrings.add("احمد طحنی");
+    mStrings.add("احمد طحانی");
     mStrings.add("مهدی علیپور");
     mStrings.add("پیمان اسکندری");
     mStrings.add("بهروز خضری");
