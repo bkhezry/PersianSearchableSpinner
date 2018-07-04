@@ -1,6 +1,7 @@
 package com.github.bkhezry.persiansearchablespinnerdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -195,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
     if (id == R.id.action_about) {
-
+      startActivity(new Intent(this, AboutActivity.class));
       return true;
     }
 
