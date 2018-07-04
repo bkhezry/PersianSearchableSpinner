@@ -1,36 +1,31 @@
-package com.github.bkhezry.persiansearchablespinnerdemo;
+package com.github.bkhezry.persiansearchablespinnerdemo.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.github.bkhezry.persiansearchablespinnerdemo.R;
+import com.github.bkhezry.persiansearchablespinnerdemo.util.AppUtils;
 import com.github.bkhezry.searchablespinner.interfaces.ISpinnerSelectedView;
-import com.github.bkhezry.searchablespinner.tools.UITools;
 
 import java.util.ArrayList;
 
+public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinnerSelectedView {
 
-public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filterable, ISpinnerSelectedView {
-
+  private Typeface mTypeface;
   private Context mContext;
   private ArrayList<String> mBackupStrings;
   private ArrayList<String> mStrings;
   private StringFilter mStringFilter = new StringFilter();
-  private Typeface mTypeface;
 
-  public SimpleArrayListAdapter(Context context, ArrayList<String> strings, String fontName) {
-    super(context, R.layout.view_list_item);
+  public SimpleListAdapter(Context context, ArrayList<String> strings, String fontName) {
     mContext = context;
     mStrings = strings;
     mBackupStrings = strings;
@@ -45,7 +40,7 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
   }
 
   @Override
-  public String getItem(int position) {
+  public Object getItem(int position) {
     if (mStrings != null) {
       return mStrings.get(position);
     } else {
@@ -63,13 +58,12 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
   }
 
   @Override
-  public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+  public View getView(int position, View convertView, ViewGroup parent) {
     View view = View.inflate(mContext, R.layout.view_list_item, null);
     ImageView letters = view.findViewById(R.id.letter_image_view);
     TextView displayName = view.findViewById(R.id.display_name_text_view);
-    letters.setImageDrawable(getTextDrawable(mStrings.get(position)));
+    letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mStrings.get(position), mTypeface));
     displayName.setText(mStrings.get(position));
-
     return view;
   }
 
@@ -78,36 +72,9 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
     View view = View.inflate(mContext, R.layout.view_list_item, null);
     ImageView letters = view.findViewById(R.id.letter_image_view);
     TextView displayName = view.findViewById(R.id.display_name_text_view);
-    letters.setImageDrawable(getTextDrawable(mStrings.get(position)));
+    letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mStrings.get(position), mTypeface));
     displayName.setText(mStrings.get(position));
     return view;
-  }
-
-  private TextDrawable getTextDrawable(String displayName) {
-    TextDrawable drawable = null;
-    if (!TextUtils.isEmpty(displayName)) {
-      int color2 = ColorGenerator.MATERIAL.getColor(displayName);
-      drawable = TextDrawable.builder()
-        .beginConfig()
-        .useFont(mTypeface)
-        .width(UITools.dpToPx(mContext, 32))
-        .height(UITools.dpToPx(mContext, 32))
-        .textColor(Color.WHITE)
-        .toUpperCase()
-        .endConfig()
-        .round()
-        .build(displayName.substring(0, 1), color2);
-    } else {
-      drawable = TextDrawable.builder()
-        .beginConfig()
-        .useFont(mTypeface)
-        .width(UITools.dpToPx(mContext, 32))
-        .height(UITools.dpToPx(mContext, 32))
-        .endConfig()
-        .round()
-        .build("?", Color.GRAY);
-    }
-    return drawable;
   }
 
   @Override

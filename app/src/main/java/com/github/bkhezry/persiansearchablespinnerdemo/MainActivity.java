@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.github.bkhezry.persiansearchablespinnerdemo.adapter.SimpleArrayListAdapter;
+import com.github.bkhezry.persiansearchablespinnerdemo.adapter.SimpleListAdapter;
 import com.github.bkhezry.searchablespinner.SearchableSpinner;
 import com.github.bkhezry.searchablespinner.interfaces.IStatusListener;
 import com.github.bkhezry.searchablespinner.interfaces.OnItemSelectedListener;
