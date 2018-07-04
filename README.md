@@ -1,5 +1,5 @@
-# PersianDateRangePicker
-[![](https://jitpack.io/v/bkhezry/PersianDateRangePicker.svg)](https://jitpack.io/#bkhezry/PersianDateRangePicker)
+# PersianSearchableSpinner
+[![](https://jitpack.io/v/bkhezry/PersianSearchableSpinner.svg)](https://jitpack.io/#bkhezry/PersianSearchableSpinner)
 
 Custom Spinner element with searchable.
 
@@ -15,11 +15,11 @@ Custom Spinner element with searchable.
 - **Custom Font** support
 
 # Preview
-## Demo
-You can download the latest demo APK from here: https://github.com/bkhezry/PersianDateRangePicker/blob/master/assets/PersianDateRangePicker.apk
+## Demo APK
+You can download the latest demo APK from here: https://github.com/bkhezry/PersianSearchableSpinner/blob/master/assets/PersianSearchableSpinner.apk
 
-## Screenshots
-<img src="assets/demo.gif" />
+## Demo
+<img src="assets/demo.gif" width="300px" />
 
 # Setup
 ## 1. Provide the gradle dependency
