@@ -2,36 +2,34 @@ package com.github.bkhezry.persiansearchablespinnerdemo.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.bkhezry.persiansearchablespinnerdemo.R;
+import com.github.bkhezry.persiansearchablespinnerdemo.model.Person;
 import com.github.bkhezry.persiansearchablespinnerdemo.util.AppUtils;
 import com.github.bkhezry.searchablespinner.interfaces.ISpinnerSelectedView;
 
 import java.util.ArrayList;
 
+public class PersonListAdapter extends BaseAdapter implements Filterable, ISpinnerSelectedView {
 
-public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filterable, ISpinnerSelectedView {
-
-  private Context mContext;
-  private ArrayList<String> mBackupStrings;
-  private ArrayList<String> mStrings;
-  private StringFilter mStringFilter = new StringFilter();
   private Typeface mTypeface;
+  private Context mContext;
+  private ArrayList<Person> mBackupPersons;
+  private ArrayList<Person> mPersons;
+  private PersonFilter mPersonFilter = new PersonFilter();
 
-  public SimpleArrayListAdapter(Context context, ArrayList<String> strings, String fontName) {
-    super(context, R.layout.view_list_item);
+  public PersonListAdapter(Context context, ArrayList<Person> persons, String fontName) {
     mContext = context;
-    mStrings = strings;
-    mBackupStrings = strings;
+    mPersons = persons;
+    mBackupPersons = persons;
     if (fontName != null) {
       mTypeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + fontName);
     }
@@ -39,13 +37,13 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
 
   @Override
   public int getCount() {
-    return mStrings == null ? 0 : mStrings.size();
+    return mPersons == null ? 0 : mPersons.size();
   }
 
   @Override
-  public String getItem(int position) {
-    if (mStrings != null) {
-      return mStrings.get(position);
+  public Person getItem(int position) {
+    if (mPersons != null) {
+      return mPersons.get(position);
     } else {
       return null;
     }
@@ -53,21 +51,20 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
 
   @Override
   public long getItemId(int position) {
-    if (mStrings == null) {
-      return mStrings.get(position).hashCode();
+    if (mPersons != null) {
+      return mPersons.get(position).hashCode();
     } else {
       return -1;
     }
   }
 
   @Override
-  public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+  public View getView(int position, View convertView, ViewGroup parent) {
     View view = View.inflate(mContext, R.layout.view_list_item, null);
     ImageView letters = view.findViewById(R.id.letter_image_view);
     TextView displayName = view.findViewById(R.id.display_name_text_view);
-    letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mStrings.get(position), mTypeface));
-    displayName.setText(mStrings.get(position));
-
+    letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mPersons.get(position).getName(), mTypeface));
+    displayName.setText(mPersons.get(position).getName());
     return view;
   }
 
@@ -76,40 +73,40 @@ public class SimpleArrayListAdapter extends ArrayAdapter<String> implements Filt
     View view = View.inflate(mContext, R.layout.view_list_item, null);
     ImageView letters = view.findViewById(R.id.letter_image_view);
     TextView displayName = view.findViewById(R.id.display_name_text_view);
-    letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mStrings.get(position), mTypeface));
-    displayName.setText(mStrings.get(position));
+    letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mPersons.get(position).getName(), mTypeface));
+    displayName.setText(mPersons.get(position).getName());
     return view;
   }
 
   @Override
   public Filter getFilter() {
-    return mStringFilter;
+    return mPersonFilter;
   }
 
-  public class StringFilter extends Filter {
+  public class PersonFilter extends Filter {
 
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
       final FilterResults filterResults = new FilterResults();
       if (TextUtils.isEmpty(constraint)) {
-        filterResults.count = mBackupStrings.size();
-        filterResults.values = mBackupStrings;
+        filterResults.count = mBackupPersons.size();
+        filterResults.values = mBackupPersons;
         return filterResults;
       }
-      final ArrayList<String> filterStrings = new ArrayList<>();
-      for (String text : mBackupStrings) {
-        if (text.toLowerCase().contains(constraint)) {
-          filterStrings.add(text);
+      final ArrayList<Person> filterPersons = new ArrayList<>();
+      for (Person person : mBackupPersons) {
+        if (person.getName().toLowerCase().contains(constraint)) {
+          filterPersons.add(person);
         }
       }
-      filterResults.count = filterStrings.size();
-      filterResults.values = filterStrings;
+      filterResults.count = filterPersons.size();
+      filterResults.values = filterPersons;
       return filterResults;
     }
 
     @Override
     protected void publishResults(CharSequence constraint, FilterResults results) {
-      mStrings = (ArrayList) results.values;
+      mPersons = (ArrayList<Person>) results.values;
       notifyDataSetChanged();
     }
   }

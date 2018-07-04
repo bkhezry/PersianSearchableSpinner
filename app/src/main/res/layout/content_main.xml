@@ -21,11 +21,16 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        app:boarder_color="@color/colorPrimary"
-        app:borders_size="1dp"
+        app:divider_height="0.5dp"
+        app:font_name="DroidNaskh-Regular.ttf"
+        app:items_divider="@color/gray_400"
+        app:no_items_found_text="@android:color/white"
         app:reveal_empty_text="انتخاب کنید"
+        app:reveal_view_background_color="@android:color/white"
+        app:search_view_background_color="@android:color/secondary_text_dark"
         app:show_borders="true"
-        app:spinner_expand_height="250dp" />
+        app:spinner_expand_height="300dp"
+        app:start_search_tint_color="@android:color/darker_gray" />
 
     <com.github.bkhezry.searchablespinner.SearchableSpinner
         android:id="@+id/searchable_spinner1"
@@ -41,53 +46,11 @@
         app:borders_size="1dp"
         app:done_search_tint_color="@android:color/white"
         app:font_name="DroidNaskh-Regular.ttf"
+        app:reveal_empty_text="انتخاب کنید"
         app:reveal_view_background_color="@android:color/holo_blue_light"
         app:search_view_background_color="@android:color/holo_blue_light"
-        app:show_borders="true"
-        app:spinner_expand_height="0dp"
-        app:start_search_tint_color="@android:color/white" />
-
-    <com.github.bkhezry.searchablespinner.SearchableSpinner
-        android:id="@+id/searchable_spinner2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center_horizontal"
-        app:divider_height="0.5dp"
-        app:font_name="DroidNaskh-Regular.ttf"
-        app:items_divider="@color/gray_400"
-        app:no_items_found_text="@android:color/holo_purple"
-        app:reveal_empty_text="انتخاب کنید"
-        app:reveal_view_background_color="@android:color/holo_purple"
-        app:search_view_background_color="@android:color/secondary_text_dark"
-        app:show_borders="true"
-        app:spinner_expand_height="300dp"
-        app:start_search_tint_color="@android:color/white" />
-
-    <com.github.bkhezry.searchablespinner.SearchableSpinner
-        android:id="@+id/searchable_spinner3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center_horizontal"
-        app:borders_size="4dp"
-        app:divider_height="0.5dp"
-        app:done_search_tint_color="@android:color/holo_purple"
-        app:font_name="DroidNaskh-Regular.ttf"
-        app:items_divider="@color/gray_400"
-        app:reveal_empty_text="انتخاب کنید"
-        app:reveal_view_background_color="@android:color/holo_purple"
-        app:search_view_background_color="@android:color/secondary_text_dark"
         app:show_borders="false"
-        app:spinner_expand_height="300dp"
+        app:spinner_expand_height="0dp"
         app:start_search_tint_color="@android:color/white" />
 
 </LinearLayout>

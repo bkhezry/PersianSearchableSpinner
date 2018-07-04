@@ -2,10 +2,11 @@ package com.github.bkhezry.persiansearchablespinnerdemo.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -17,15 +18,17 @@ import com.github.bkhezry.searchablespinner.interfaces.ISpinnerSelectedView;
 
 import java.util.ArrayList;
 
-public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinnerSelectedView {
 
-  private Typeface mTypeface;
+public class StringListAdapter extends ArrayAdapter<String> implements Filterable, ISpinnerSelectedView {
+
   private Context mContext;
   private ArrayList<String> mBackupStrings;
   private ArrayList<String> mStrings;
   private StringFilter mStringFilter = new StringFilter();
+  private Typeface mTypeface;
 
-  public SimpleListAdapter(Context context, ArrayList<String> strings, String fontName) {
+  public StringListAdapter(Context context, ArrayList<String> strings, String fontName) {
+    super(context, R.layout.view_list_item);
     mContext = context;
     mStrings = strings;
     mBackupStrings = strings;
@@ -40,7 +43,7 @@ public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinn
   }
 
   @Override
-  public Object getItem(int position) {
+  public String getItem(int position) {
     if (mStrings != null) {
       return mStrings.get(position);
     } else {
@@ -58,12 +61,13 @@ public class SimpleListAdapter extends BaseAdapter implements Filterable, ISpinn
   }
 
   @Override
-  public View getView(int position, View convertView, ViewGroup parent) {
+  public View getView(int position, View convertView, @NonNull ViewGroup parent) {
     View view = View.inflate(mContext, R.layout.view_list_item, null);
     ImageView letters = view.findViewById(R.id.letter_image_view);
     TextView displayName = view.findViewById(R.id.display_name_text_view);
     letters.setImageDrawable(AppUtils.getTextDrawable(mContext, mStrings.get(position), mTypeface));
     displayName.setText(mStrings.get(position));
+
     return view;
   }
 
