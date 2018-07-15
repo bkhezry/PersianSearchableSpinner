@@ -55,6 +55,7 @@ import com.joanzapata.iconify.widget.IconTextView;
 
 import gr.escsoft.michaelprimez.searchablespinner.R;
 import io.codetail.animation.ViewAnimationUtils;
+import io.codetail.widget.RevealFrameLayout;
 import io.codetail.widget.RevealLinearLayout;
 
 public class SearchableSpinner extends RelativeLayout implements View.OnClickListener {
@@ -110,6 +111,10 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
   private TextView revealEmptyText;
   private boolean isSpinnerOpen = false;
   private static final int PADDING_DP = 15;
+  private boolean isSearchable = true;
+  private RevealFrameLayout revealFrameLayout;
+  private @ColorInt
+  int spinnerBorderColor;
 
   public enum ViewState {
     ShowingRevealedLayout,
@@ -175,6 +180,8 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
         mListItemDivider = attributes.getDrawable(R.styleable.SearchableSpinner_items_divider);
         mListDividerSize = attributes.getDimensionPixelSize(R.styleable.SearchableSpinner_divider_height, 0);
         mFontName = attributes.getString(R.styleable.SearchableSpinner_font_name);
+        isSearchable = attributes.getBoolean(R.styleable.SearchableSpinner_searchable, true);
+        spinnerBorderColor = attributes.getColor(R.styleable.SearchableSpinner_spinner_border_color, Color.TRANSPARENT);
       } catch (UnsupportedOperationException e) {
         Log.e("SearchableSpinner", "getAttributeSet --> " + e.getLocalizedMessage());
       }
@@ -192,6 +199,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     mContainerCardView = findViewById(R.id.container_card_view);
     mSearchEditText = findViewById(R.id.search_edit_text);
     mDoneSearchImageView = findViewById(R.id.done_search_icon_text_view);
+    revealFrameLayout = findViewById(R.id.reveal_frame_layout_container);
     init();
   }
 
@@ -229,6 +237,10 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     setupColors();
     setupList();
     mSearchEditText.setImeOptions(EditorInfo.IME_ACTION_DONE | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+    if (!isSearchable) {
+      mSearchEditText.setVisibility(INVISIBLE);
+    }
+    revealFrameLayout.setBackgroundColor(spinnerBorderColor);
     mStartSearchImageView.setOnClickListener(this);
     mDoneSearchImageView.setOnClickListener(this);
     mSearchEditText.addTextChangedListener(mTextWatcher);
@@ -744,6 +756,18 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
 
   public boolean isSpinnerOpen() {
     return isSpinnerOpen;
+  }
+
+  public void setSpinnerBorderColor(@ColorInt int color) {
+    this.spinnerBorderColor = color;
+    revealFrameLayout.setBackgroundColor(color);
+  }
+
+  public void setSearchable(boolean isSearchable) {
+    this.isSearchable = isSearchable;
+    if (!isSearchable) {
+      mSearchEditText.setVisibility(INVISIBLE);
+    }
   }
 
   @Override

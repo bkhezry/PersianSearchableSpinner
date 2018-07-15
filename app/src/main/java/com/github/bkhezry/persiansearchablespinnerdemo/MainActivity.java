@@ -2,6 +2,7 @@ package com.github.bkhezry.persiansearchablespinnerdemo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
   SearchableSpinner searchableSpinner;
   @BindView(R.id.searchable_spinner1)
   SearchableSpinner searchableSpinner1;
+  @BindView(R.id.searchable_spinner2)
+  SearchableSpinner searchableSpinner2;
   private StringListAdapter mStringListAdapter;
   private ArrayList<String> mStrings = new ArrayList<>();
   private PersonListAdapter mPersonListAdapter;
+  private PersonListAdapter mPersonListAdapter1;
   private ArrayList<Person> mPersons = new ArrayList<>();
+  private ArrayList<Person> mPersons1 = new ArrayList<>();
   private boolean isSpinnerOpen = false;
   private String[] names = {
     "پاتریک درآواکیانس",
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     searchableSpinner.setFontName("DroidNaskh-Regular.ttf");
     searchableSpinner.setAdapter(mStringListAdapter);
+    searchableSpinner.setSpinnerBorderColor(Color.BLACK);
     searchableSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
       @Override
       public void onItemSelected(View view, int position, long id) {
@@ -155,6 +161,31 @@ public class MainActivity extends AppCompatActivity {
         isSpinnerOpen = false;
       }
     });
+    mPersonListAdapter1 = new PersonListAdapter(this, mPersons1, "DroidNaskh-Regular.ttf");
+    searchableSpinner2.setAdapter(mPersonListAdapter1);
+    searchableSpinner2.setOnItemSelectedListener(new OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(View view, int position, long id) {
+        Toast.makeText(MainActivity.this, "Item on position " + position + " : " + mPersonListAdapter1.getItem(position).toString() + " Selected", Toast.LENGTH_LONG).show();
+      }
+
+      @Override
+      public void onNothingSelected() {
+
+      }
+    });
+    searchableSpinner2.setStatusListener(new IStatusListener() {
+      @Override
+      public void spinnerIsOpening() {
+        isSpinnerOpen = true;
+        searchableSpinner.hideEdit();
+      }
+
+      @Override
+      public void spinnerIsClosing() {
+        isSpinnerOpen = false;
+      }
+    });
   }
 
   @Override
@@ -179,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
       person.setName(names[i]);
       person.setEmail(emails[i]);
       mPersons.add(person);
+      mPersons1.add(person);
     }
   }
 
