@@ -796,9 +796,11 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
 
   @Override
   public void onRestoreInstanceState(Parcelable state) {
-    super.onRestoreInstanceState(state);
+    if (!(state instanceof SavedState)) {
+      super.onRestoreInstanceState(state);
+      return;
+    }
     SavedState ss = (SavedState) state;
-    super.onRestoreInstanceState(ss.getSuperState());
     mViewState = ss.mViewState;
     mAnimDuration = ss.mAnimDuration;
     mBordersSize = ss.mBordersSize;
@@ -824,6 +826,7 @@ public class SearchableSpinner extends RelativeLayout implements View.OnClickLis
     if (mFontName != null) {
       createTypeface();
     }
+    super.onRestoreInstanceState(ss.getSuperState());
   }
 
   static class SavedState extends BaseSavedState {
