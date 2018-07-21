@@ -35,7 +35,7 @@ allprojects {
 Add the dependency:
 ```gradle
 dependencies {
-implementation 'com.github.bkhezry:PersianSearchableSpinner:1.4.0'
+implementation 'com.github.bkhezry:PersianSearchableSpinner:1.4.2'
 }
 ```
 Using the Spinner
